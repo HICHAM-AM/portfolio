@@ -129,35 +129,6 @@ export const getPortfolioData = (lang: Language = 'en') => {
           badgeColor: "bg-amber-500/10 text-amber-400 border-amber-500/30"
         },
         {
-          id: "oxy-player",
-          title: "Oxy Player — Multi-Écrans IPTV & Streaming",
-          tagline: "Plateforme vidéo fluide pour Smart TV Samsung Tizen, LG webOS & Android TV",
-          category: "smart-tv" as const,
-          categoryLabel: "Smart TV & Streaming Vidéo",
-          stack: ["Samsung Tizen OS", "LG webOS", "Android TV", "Flutter", "libmpv (media_kit)", "Node.js", "Express", "SQLite"],
-          description: "Écosystème unifié de streaming vidéo haute fidélité pour téléviseurs connectés et mobiles, prenant en charge les protocoles de diffusion directs, multi-pistes audio et formats IPTV complexes.",
-          features: [
-            "Moteur vidéo haute performance gérant les flux IPTV, HLS, MPEG-TS avec décodage matériel natif.",
-            "Prise en charge intégrale des télécommandes Smart TV (D-Pad, touches directionnelles, événements Luna Bus).",
-            "Architecture unifiée avec scripts de synchronisation automatique et packaging automatisé de fichiers .ipk et .wgt.",
-            "API backend Node.js ultra-rapide avec appairage fluide par QR Code et persistance locale SQLite."
-          ],
-          architectureHighlights: [
-            "Intégration poussée des APIs natives : Tizen AVPlay API et webOS Luna Bus Service calls.",
-            "Gestion du buffer vidéo adaptatif évitant les saccades sur les réseaux à débit variable.",
-            "Optimisation mémoire stricte pour les processeurs limités des téléviseurs de salon."
-          ],
-          metrics: [
-            { label: "Plateformes", value: "Tizen, webOS, Android" },
-            { label: "Moteur", value: "libmpv / AVPlay" },
-            { label: "Contrôle", value: "D-Pad 100%" },
-            { label: "Packaging", value: ".ipk & .wgt auto" }
-          ],
-          icon: "Tv",
-          gradient: "from-purple-500/20 via-violet-500/10 to-pink-500/20",
-          badgeColor: "bg-purple-500/10 text-purple-400 border-purple-500/30"
-        },
-        {
           id: "solux-energy",
           title: "SoluxEnergy.ma — Portail Commercial & Énergétique",
           tagline: "Plateforme web d'ingénierie énergétique bilingue RTL/LTR et haute conversion",
@@ -469,35 +440,6 @@ export const getPortfolioData = (lang: Language = 'en') => {
           badgeColor: "bg-amber-500/10 text-amber-400 border-amber-500/30"
         },
         {
-          id: "oxy-player",
-          title: "Oxy Player — مشغل البث التلفزيوني متعدد الشاشات",
-          tagline: "مشغل فيديو عالي الأداء لتلفزيونات Samsung Tizen و LG webOS و Android TV",
-          category: "smart-tv" as const,
-          categoryLabel: "التلفاز الذكي والبث",
-          stack: ["Samsung Tizen OS", "LG webOS", "Android TV", "Flutter", "libmpv (media_kit)", "Node.js", "Express", "SQLite"],
-          description: "منظومة موحدة لبث الفيديو فائق النقاء للشاشات الكبيرة والهواتف، تدعم بروتوكولات البث المباشر وقوائم IPTV المعقدة وتعدد مسارات الصوت والترجمة.",
-          features: [
-            "محرك فيديو فائق الكفاءة يتعامل مع تدفقات IPTV, HLS, MPEG-TS بفك تشفير عتادي أصيل.",
-            "دعم كامل لأجهزة التحكم عن بُعد (ريموت التلفاز D-Pad) مع استجابة فورية للأزرار.",
-            "بنية برمجية موحدة مع سكريبتات مزامنة وتجميع آلي لحزم التثبيت الرسمية .ipk و .wgt.",
-            "واجهة برمجية خفيفة وسريعة عبر Node.js مع اقتران فوري عبر رمز الاستجابة السريعة (QR Code)."
-          ],
-          architectureHighlights: [
-            "تكامل مباشر مع الواجهات البرمجية الأصلية: Tizen AVPlay API و webOS Luna Bus Service.",
-            "إدارة ذكية للتخزين المؤقت للبيانات لمنع تقطيع الفيديو عند تذبذب سرعة الاتصال.",
-            "تحسين استهلاك الذاكرة العشوائية ليتناسب مع معالجات شاشات التلفاز المحدودة."
-          ],
-          metrics: [
-            { label: "المنصات المدعومة", value: "Tizen, webOS, Android" },
-            { label: "المحرك المدمج", value: "libmpv / AVPlay" },
-            { label: "التحكم بالريموت", value: "100% D-Pad" },
-            { label: "الحزم الآلية", value: ".ipk و .wgt" }
-          ],
-          icon: "Tv",
-          gradient: "from-purple-500/20 via-violet-500/10 to-pink-500/20",
-          badgeColor: "bg-purple-500/10 text-purple-400 border-purple-500/30"
-        },
-        {
           id: "solux-energy",
           title: "SoluxEnergy.ma — البوابة التجارية للطاقة الشمسية",
           tagline: "منصة ويب متطورة ثنائية اللغة تدعم العربية والفرنسية بمعدل تحويل عالٍ",
@@ -807,35 +749,6 @@ export const getPortfolioData = (lang: Language = 'en') => {
         icon: "Music",
         gradient: "from-amber-500/20 via-orange-500/10 to-red-500/20",
         badgeColor: "bg-amber-500/10 text-amber-400 border-amber-500/30"
-      },
-      {
-        id: "oxy-player",
-        title: "Oxy Player — Multi-Screen IPTV & Streaming",
-        tagline: "Ultra-fluid streaming engine for Samsung Tizen, LG webOS & Android TV",
-        category: "smart-tv" as const,
-        categoryLabel: "Smart TV & Video Streaming",
-        stack: ["Samsung Tizen OS", "LG webOS", "Android TV", "Flutter", "libmpv (media_kit)", "Node.js", "Express", "SQLite"],
-        description: "Unified cross-screen streaming ecosystem for connected Smart TVs and mobile clients, handling direct live feeds, multi-audio switching, embedded subtitles, and complex IPTV formats.",
-        features: [
-          "High-throughput playback engine orchestrating IPTV, HLS, and MPEG-TS with native hardware decoding.",
-          "First-class Smart TV remote control ergonomics (D-Pad navigation, remote shortcuts, Luna Bus events).",
-          "Automated cross-platform pipeline with build scripts generating valid .ipk and .wgt packaging deliverables.",
-          "Lightweight Node.js backend providing seamless QR Code device pairing and fast SQLite caching."
-        ],
-        architectureHighlights: [
-          "Deep integration with native vendor APIs: Tizen AVPlay API and LG webOS Luna Bus Service calls.",
-          "Adaptive network buffer management preventing stutter and dropped frames on congested connections.",
-          "Strict memory management tailored for low-resource living room TV processors."
-        ],
-        metrics: [
-          { label: "Target Platforms", value: "Tizen, webOS, Android" },
-          { label: "Core Player", value: "libmpv / AVPlay" },
-          { label: "Navigation", value: "100% D-Pad Ready" },
-          { label: "Packaging", value: ".ipk & .wgt auto" }
-        ],
-        icon: "Tv",
-        gradient: "from-purple-500/20 via-violet-500/10 to-pink-500/20",
-        badgeColor: "bg-purple-500/10 text-purple-400 border-purple-500/30"
       },
       {
         id: "solux-energy",

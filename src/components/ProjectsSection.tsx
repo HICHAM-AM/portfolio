@@ -20,22 +20,20 @@ interface ProjectsSectionProps {
 
 export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjectForQuote }) => {
   const { language, t, isRtl } = useLanguage();
-  const [selectedFilter, setSelectedFilter] = useState<'all' | 'mobile' | 'smart-tv' | 'web'>('all');
+  const [selectedFilter, setSelectedFilter] = useState<'all' | 'mobile' | 'web'>('all');
   const [activeModalProject, setActiveModalProject] = useState<Project | null>(null);
 
   const { projects } = getPortfolioData(language);
 
   const filterTabs = [
-    { id: 'all', label: t.projects.filters.all, count: projects.length },
-    { id: 'mobile', label: t.projects.filters.mobile, count: projects.filter(p => p.category === 'mobile-ai' || p.category === 'media').length },
-    { id: 'smart-tv', label: t.projects.filters.smartTv, count: projects.filter(p => p.category === 'smart-tv').length },
-    { id: 'web', label: t.projects.filters.web, count: projects.filter(p => p.category === 'web-saas').length },
+    { id: 'all' as const, label: t.projects.filters.all, count: projects.length },
+    { id: 'mobile' as const, label: t.projects.filters.mobile, count: projects.filter(p => p.category === 'mobile-ai' || p.category === 'media').length },
+    { id: 'web' as const, label: t.projects.filters.web, count: projects.filter(p => p.category === 'web-saas').length },
   ];
 
   const filteredProjects = projects.filter((p) => {
     if (selectedFilter === 'all') return true;
     if (selectedFilter === 'mobile') return p.category === 'mobile-ai' || p.category === 'media';
-    if (selectedFilter === 'smart-tv') return p.category === 'smart-tv';
     if (selectedFilter === 'web') return p.category === 'web-saas';
     return true;
   });

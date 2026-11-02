@@ -22,7 +22,7 @@ High-performance, production-grade portfolio website engineered for **Hicham AM.
 - **Typography & Icons :** Plus Jakarta Sans, Space Grotesk, Fira Code, Cairo, Lucide Icons.
 - **Interactive Engineering Showcase :**
   - **Interactive Code Terminal :** Multi-tab simulator featuring real architecture snippets (Flutter ML Kit on-device, Next.js Redis BullMQ workers, Tizen AVPlay / LG Luna Bus Smart TV engine, and Cloudflare WAF / anti-spoofing DNS).
-  - **Project Deep-Dive Modals :** Full breakdown of the 5 flagship projects (Passport & Visa Photo AI Maker, Video to MP3 ConvertX, Oxy Player Smart TV, SoluxEnergy.ma, and Video AI Platform).
+  - **Project Deep-Dive Modals :** Full breakdown of the flagship projects (Passport & Visa Photo AI Maker, Video to MP3 ConvertX, SoluxEnergy.ma, and Video AI Platform).
   - **Interactive Scope Builder :** Custom platform and capability selector generating instant pre-filled inquiries.
   - **Cloudflare Security Simulator :** Real-time animated integrity scan verifying 12 security checkpoints (WAF, SSL Strict, SPF `-all`, DKIM 2048, DMARC `p=reject`, Argon2, 2FA).
   - **Live Local Time :** Real-time clock for Casablanca, Morocco (GMT+1).
