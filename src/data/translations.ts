@@ -862,3 +862,4 @@ export const TRANSLATIONS: Record<Language, TranslationData> = {
     }
   }
 };
+
