@@ -52,8 +52,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
           <a href="#accueil" className="flex items-center gap-3 group">
             <div className="relative">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 p-[1.5px] shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-500/40 transition-shadow">
-                <div className="w-full h-full bg-[#0b0e17] rounded-[10px] flex items-center justify-center font-display font-bold text-white tracking-wider text-base">
-                  HA
+                <div className="w-full h-full bg-[#0b0e17] rounded-[10px] flex items-center justify-center font-display font-bold text-white tracking-wider text-xs">
+                  HAM
                 </div>
               </div>
               <span className={`absolute -bottom-0.5 ${isRtl ? '-left-0.5' : '-right-0.5'} flex h-3 w-3`}>

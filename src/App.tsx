@@ -44,15 +44,15 @@ function AppContent() {
   const handleSelectProjectForQuote = (projectName: string) => {
     if (language === 'ar') {
       setPrefilledMessage(
-        `مرحباً هشام،\n\nأنا مهتم جداً بأعمالك، لا سيما مشروع "${projectName}".\n\nلدي فكرة مشروع مشابه وأود مناقشة الجدوى التقنية، المواعيد المتوقعة للتسليم والتكلفة التقديرية.`
+        `مرحباً هشام AM.،\n\nأنا مهتم جداً بأعمالك، لا سيما مشروع "${projectName}".\n\nلدي فكرة مشروع مشابه وأود مناقشة الجدوى التقنية، المواعيد المتوقعة للتسليم والتكلفة التقديرية.`
       );
     } else if (language === 'fr') {
       setPrefilledMessage(
-        `Bonjour Hicham,\n\nJe suis très intéressé par vos réalisations, en particulier sur le projet "${projectName}".\n\nJ'ai un projet similaire en tête et je souhaiterais échanger sur la faisabilité technique, les délais de livraison et le budget estimé.`
+        `Bonjour Hicham AM.,\n\nJe suis très intéressé par vos réalisations, en particulier sur le projet "${projectName}".\n\nJ'ai un projet similaire en tête et je souhaiterais échanger sur la faisabilité technique, les délais de livraison et le budget estimé.`
       );
     } else {
       setPrefilledMessage(
-        `Hello Hicham,\n\nI am very interested in your work, especially regarding the project "${projectName}".\n\nI have a similar project in mind and would like to discuss technical feasibility, delivery timelines, and estimated investment.`
+        `Hello Hicham AM.,\n\nI am very interested in your work, especially regarding the project "${projectName}".\n\nI have a similar project in mind and would like to discuss technical feasibility, delivery timelines, and estimated investment.`
       );
     }
     const contactElem = document.getElementById('contact');

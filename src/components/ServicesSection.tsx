@@ -54,11 +54,11 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onConfigurePro
 
     let summary = '';
     if (language === 'ar') {
-      summary = `مرحباً هشام، أود مناقشة مشروعي معك:\n- المنصة المستهدفة: ${platformObj?.name}\n- المواصفات والمتطلبات التقنية: ${activeFeats || 'قياسية'}\nأرجو إخباري بتفرغك لمناقشة الجدوى وتقدير التكلفة.`;
+      summary = `مرحباً هشام AM.، أود مناقشة مشروعي معك:\n- المنصة المستهدفة: ${platformObj?.name}\n- المواصفات والمتطلبات التقنية: ${activeFeats || 'قياسية'}\nأرجو إخباري بتفرغك لمناقشة الجدوى وتقدير التكلفة.`;
     } else if (language === 'fr') {
-      summary = `Bonjour Hicham, je souhaite échanger au sujet de mon projet :\n- Plateforme cible : ${platformObj?.name}\n- Spécifications clés : ${activeFeats || 'Standard'}\nMerci de m'indiquer vos disponibilités pour échanger sur la faisabilité et le devis.`;
+      summary = `Bonjour Hicham AM., je souhaite échanger au sujet de mon projet :\n- Plateforme cible : ${platformObj?.name}\n- Spécifications clés : ${activeFeats || 'Standard'}\nMerci de m'indiquer vos disponibilités pour échanger sur la faisabilité et le devis.`;
     } else {
-      summary = `Hello Hicham, I would like to discuss my project with you:\n- Target platform: ${platformObj?.name}\n- Technical specifications: ${activeFeats || 'Standard'}\nPlease let me know your availability to discuss technical feasibility and quote.`;
+      summary = `Hello Hicham AM., I would like to discuss my project with you:\n- Target platform: ${platformObj?.name}\n- Technical specifications: ${activeFeats || 'Standard'}\nPlease let me know your availability to discuss technical feasibility and quote.`;
     }
 
     onConfigureProject(summary);

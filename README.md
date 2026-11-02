@@ -1,7 +1,7 @@
-# 🚀 Professional Engineering Portfolio — Hicham A.
+# 🚀 Professional Engineering Portfolio — Hicham AM.
 ### Senior Mobile & Full-Stack Developer | Flutter • Next.js 16 • On-Device AI • Web Security
 
-High-performance, production-grade portfolio website engineered for **Hicham A.** based on his engineering blueprint.
+High-performance, production-grade portfolio website engineered for **Hicham AM.** based on his engineering blueprint.
 
 ---
 

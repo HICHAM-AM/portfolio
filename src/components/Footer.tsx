@@ -27,8 +27,8 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-2 space-y-4">
             <a href="#accueil" className="flex items-center gap-3 group inline-block">
               <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 p-[1.5px] shadow-lg shadow-cyan-500/20">
-                <div className="w-full h-full bg-[#0b0e17] rounded-[10px] flex items-center justify-center font-display font-bold text-white text-sm">
-                  HA
+                <div className="w-full h-full bg-[#0b0e17] rounded-[10px] flex items-center justify-center font-display font-bold text-white text-xs">
+                  HAM
                 </div>
               </div>
               <div className="flex flex-col">

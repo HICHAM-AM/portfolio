@@ -49,7 +49,7 @@ export interface Experience {
 }
 
 export const PROFILE_CONSTANTS = {
-  name: "Hicham A.",
+  name: "Hicham AM.",
   username: "@hicham1943",
   fiverrUrl: "https://www.fiverr.com/hicham1943",
   email: "contact@hicham.dev",
@@ -59,7 +59,7 @@ export const getPortfolioData = (lang: Language = 'en') => {
   if (lang === 'fr') {
     return {
       profile: {
-        name: "Hicham A.",
+        name: "Hicham AM.",
         role: "Senior Mobile & Web Developer",
         tagline: "Senior Mobile and Web Developer — Flutter • Next.js • On-Device AI • Web Security",
         username: "@hicham1943",
@@ -399,7 +399,7 @@ export const getPortfolioData = (lang: Language = 'en') => {
   if (lang === 'ar') {
     return {
       profile: {
-        name: "هشام أ.",
+        name: "هشام ع.م (Hicham AM.)",
         role: "مطور أول تطبيقات جوال وويب وشاشات ذكية",
         tagline: "مطور أول تطبيقات الجوال والويب الشامل — Flutter • Next.js • الذكاء الاصطناعي • أمان الويب",
         username: "@hicham1943",
@@ -739,7 +739,7 @@ export const getPortfolioData = (lang: Language = 'en') => {
   // Default: English ('en')
   return {
     profile: {
-      name: "Hicham A.",
+      name: "Hicham AM.",
       role: "Senior Mobile & Web Developer",
       tagline: "Senior Mobile and Web Developer — Flutter • Next.js • On-Device AI • Web Security",
       username: "@hicham1943",
