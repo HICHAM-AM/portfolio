@@ -9,7 +9,9 @@ import {
   Check, 
   MessageSquare,
   MapPin,
-  Languages
+  Languages,
+  Phone,
+  MessageCircle
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { PROFILE_CONSTANTS } from '../data/portfolioData';
@@ -19,7 +21,7 @@ interface ContactSectionProps {
 }
 
 export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledMessage }) => {
-  const { t, isRtl } = useLanguage();
+  const { language, t, isRtl } = useLanguage();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -134,6 +136,79 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledMessage
               </div>
             </div>
 
+            {/* WhatsApp & Mobile Direct Card */}
+            <div className="glass-panel rounded-2xl p-6 border border-emerald-500/30 bg-emerald-950/10 hover:border-emerald-500/60 transition-all shadow-lg">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-xl bg-[#25D366]/20 border border-[#25D366]/40 flex items-center justify-center text-[#25D366]">
+                    <MessageCircle className="w-5 h-5 fill-[#25D366]/20" />
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-white">
+                      WhatsApp & Mobile
+                    </h4>
+                    <span className="text-xs font-mono text-emerald-400 font-semibold" dir="ltr">
+                      {PROFILE_CONSTANTS.phoneDisplay}
+                    </span>
+                  </div>
+                </div>
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                  {language === 'ar' ? 'رد فوري' : 'Direct'}
+                </span>
+              </div>
+              <p className="text-xs text-slate-300 font-light leading-relaxed mb-4">
+                {language === 'ar' 
+                  ? 'تواصل فوري وسريع لمناقشة أفكار المشاريع والجدوى التقنية.' 
+                  : language === 'fr' 
+                  ? 'Échange direct et rapide pour discuter de vos projets, délais et tarifs.'
+                  : 'Fast and direct discussion regarding your project requirements, scope, and deadlines.'}
+              </p>
+              <div className="flex items-center gap-2">
+                <a
+                  href={PROFILE_CONSTANTS.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-bold bg-[#25D366] hover:bg-[#20ba5a] text-black shadow-md shadow-[#25D366]/20 transition-all hover:scale-[1.02]"
+                >
+                  <MessageCircle className="w-4 h-4 fill-black" />
+                  <span>{language === 'ar' ? 'محادثة واتساب مباشرة' : language === 'fr' ? 'Discuter sur WhatsApp' : 'Chat on WhatsApp'}</span>
+                </a>
+                <a
+                  href={`tel:${PROFILE_CONSTANTS.phone}`}
+                  className="inline-flex items-center justify-center p-2.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors"
+                  title="Appeler"
+                >
+                  <Phone className="w-4 h-4 text-cyan-400" />
+                </a>
+              </div>
+            </div>
+
+            {/* Direct Email Card */}
+            <div className="glass-panel rounded-2xl p-6 border border-slate-800">
+              <span className="text-xs font-mono text-cyan-400 uppercase tracking-wider block mb-2">
+                {t.contact.emailCard.title}
+              </span>
+              <div className="flex items-center justify-between bg-slate-900/80 p-3 rounded-xl border border-slate-800">
+                <div className="flex items-center gap-2.5 overflow-hidden" dir="ltr">
+                  <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
+                  <a href={`mailto:${PROFILE_CONSTANTS.email}`} className="text-xs sm:text-sm font-mono text-white hover:text-cyan-300 truncate transition-colors">
+                    {PROFILE_CONSTANTS.email}
+                  </a>
+                </div>
+                <button
+                  onClick={handleCopyEmail}
+                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors shrink-0 mx-2"
+                  title="Copy email address"
+                >
+                  {copiedEmail ? (
+                    <Check className="w-4 h-4 text-emerald-400" />
+                  ) : (
+                    <Copy className="w-4 h-4" />
+                  )}
+                </button>
+              </div>
+            </div>
+
             {/* Fiverr Official Banner */}
             <a
               href={PROFILE_CONSTANTS.fiverrUrl}
@@ -161,32 +236,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledMessage
                 {t.contact.fiverrCard.desc}
               </p>
             </a>
-
-            {/* Direct Email Card */}
-            <div className="glass-panel rounded-2xl p-6 border border-slate-800">
-              <span className="text-xs font-mono text-cyan-400 uppercase tracking-wider block mb-2">
-                {t.contact.emailCard.title}
-              </span>
-              <div className="flex items-center justify-between bg-slate-900/80 p-3 rounded-xl border border-slate-800">
-                <div className="flex items-center gap-2.5 overflow-hidden" dir="ltr">
-                  <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
-                  <span className="text-xs sm:text-sm font-mono text-white truncate">
-                    {PROFILE_CONSTANTS.email}
-                  </span>
-                </div>
-                <button
-                  onClick={handleCopyEmail}
-                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors shrink-0 mx-2"
-                  title="Copy email address"
-                >
-                  {copiedEmail ? (
-                    <Check className="w-4 h-4 text-emerald-400" />
-                  ) : (
-                    <Copy className="w-4 h-4" />
-                  )}
-                </button>
-              </div>
-            </div>
 
             {/* Languages spoken */}
             <div className="glass-panel rounded-2xl p-6 border border-slate-800">

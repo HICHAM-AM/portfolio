@@ -3,7 +3,8 @@ import {
   ArrowUp, 
   ExternalLink, 
   Mail, 
-  MapPin
+  MapPin,
+  MessageCircle
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { getPortfolioData, PROFILE_CONSTANTS } from '../data/portfolioData';
@@ -54,6 +55,17 @@ export const Footer: React.FC = () => {
                 <Mail className="w-3.5 h-3.5 text-cyan-400" />
                 <a href={`mailto:${PROFILE_CONSTANTS.email}`} className="hover:text-cyan-300 transition-colors">
                   {PROFILE_CONSTANTS.email}
+                </a>
+              </div>
+              <div className="flex items-center gap-2 text-slate-400 text-xs font-mono" dir="ltr">
+                <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
+                <a 
+                  href={PROFILE_CONSTANTS.whatsappUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:text-emerald-300 transition-colors"
+                >
+                  {PROFILE_CONSTANTS.phoneDisplay}
                 </a>
               </div>
             </div>
