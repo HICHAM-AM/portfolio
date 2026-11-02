@@ -1,46 +1,49 @@
-# 🚀 Portfolio Professionnel — Hicham A.
+# 🚀 Professional Engineering Portfolio — Hicham A.
 ### Senior Mobile & Full-Stack Developer | Flutter • Next.js 16 • On-Device AI • Web Security
 
-Ce portfolio interactif haute performance a été conçu sur mesure à partir du blueprint d'ingénierie logicielle de **Hicham A.**
+High-performance, production-grade portfolio website engineered for **Hicham A.** based on his engineering blueprint.
 
 ---
 
-## 🌟 Caractéristiques & Stack Technique
+## 🌐 Multilingual Support (Trilingue)
 
-- **Frontend Moderne :** React 19, TypeScript, Vite 8, Tailwind CSS v4.
-- **Iconographie & Typographie :** Lucide Icons, Plus Jakarta Sans, Space Grotesk, Fira Code.
-- **Interactivité & Expérience Utilisateur :**
-  - **Hero Interactif :** Simulateur de code et d'architecture multi-onglets (Flutter ML Kit, Next.js Redis BullMQ, Smart TV AVPlay, Cloudflare WAF).
-  - **Modale Deep-Dive Projets :** Exploration détaillée des 5 projets phares (métriques, stack, défis d'architecture).
-  - **Configurateur de Périmètre / Devis :** Simulateur interactif permettant au client de composer sa stack et de pré-remplir le formulaire de contact en un clic.
-  - **Simulateur d'Audit Sécurité :** Terminal de diagnostic Cloudflare WAF, SSL Strict, SPF/DKIM/DMARC avec animation de scan en direct.
-  - **Horloge Dynamique en Temps Réel :** Fuseau horaire du Maroc (GMT+1 / Casablanca).
-  - **En-tête & Pied de Page 100% Interconnectés :** Détection automatique de la section active lors du défilement, menu tiroir responsive et retour en haut de page.
+- **Default Language :** **English (`en`)**
+- **Supported Languages :**
+  - 🇬🇧 **English (Default)** — Left-to-Right (`ltr`)
+  - 🇫🇷 **Français** — Left-to-Right (`ltr`)
+  - 🇲🇦 **العربية** — Native Right-to-Left (`rtl`) with typography tailored via the Google Font *Cairo*.
+- **Language Switcher :** Integrated directly in the sticky navigation header and mobile drawer with instant state persistence (`localStorage`).
 
 ---
 
-## 🛠️ Lancer le Projet Localement
+## 🌟 Key Technical Features
+
+- **Modern Frontend :** React 19, TypeScript, Vite 8, Tailwind CSS v4.
+- **Typography & Icons :** Plus Jakarta Sans, Space Grotesk, Fira Code, Cairo, Lucide Icons.
+- **Interactive Engineering Showcase :**
+  - **Interactive Code Terminal :** Multi-tab simulator featuring real architecture snippets (Flutter ML Kit on-device, Next.js Redis BullMQ workers, Tizen AVPlay / LG Luna Bus Smart TV engine, and Cloudflare WAF / anti-spoofing DNS).
+  - **Project Deep-Dive Modals :** Full breakdown of the 5 flagship projects (Passport & Visa Photo AI Maker, Video to MP3 ConvertX, Oxy Player Smart TV, SoluxEnergy.ma, and Video AI Platform).
+  - **Interactive Scope Builder :** Custom platform and capability selector generating instant pre-filled inquiries.
+  - **Cloudflare Security Simulator :** Real-time animated integrity scan verifying 12 security checkpoints (WAF, SSL Strict, SPF `-all`, DKIM 2048, DMARC `p=reject`, Argon2, 2FA).
+  - **Live Local Time :** Real-time clock for Casablanca, Morocco (GMT+1).
+  - **Direct CTAs :** One-click Fiverr orders ([fiverr.com/hicham1943](https://www.fiverr.com/hicham1943)) and direct email (`contact@hicham.dev`).
+
+---
+
+## 🛠️ Run Locally
 
 ```bash
-# 1. Installer les dépendances
+# 1. Install dependencies
 pnpm install
 
-# 2. Démarrer le serveur de développement
+# 2. Run dev server
 pnpm dev
 
-# 3. Compiler pour la production
+# 3. Production build
 pnpm build
 
-# 4. Prévisualiser le build de production
+# 4. Preview production build
 pnpm preview
 ```
 
-Le serveur local est disponible sur `http://localhost:5173/`.
-
----
-
-## 📬 Contact & Liens Directs
-
-- **Fiverr :** [fiverr.com/hicham1943](https://www.fiverr.com/hicham1943)
-- **Email :** `contact@hicham.dev`
-- **Disponibilité :** Projets Freelance, Régie forfaitaire & Contrats Long-Terme (Remote Worldwide).
+Local development server URL: `http://localhost:5173/`
