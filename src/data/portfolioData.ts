@@ -129,6 +129,35 @@ export const getPortfolioData = (lang: Language = 'en') => {
           badgeColor: "bg-amber-500/10 text-amber-400 border-amber-500/30"
         },
         {
+          id: "smart-tv-iptv-player",
+          title: "Lecteur IPTV & Streaming Multi-Écrans",
+          tagline: "Solution de lecture vidéo fluide pour Smart TV Samsung Tizen, LG webOS & Android TV",
+          category: "smart-tv" as const,
+          categoryLabel: "Smart TV & Streaming Vidéo",
+          stack: ["Samsung Tizen", "LG webOS", "Android TV", "Flutter", "HLS / MPEG-TS", "D-Pad Navigation", "Hardware Acceleration"],
+          description: "Application de streaming multimédia haute performance conçue pour les téléviseurs connectés et mobiles, optimisée pour la fluidité de navigation à la télécommande et la lecture de flux directs haute définition.",
+          features: [
+            "Moteur de lecture fluide gérant les flux IPTV, HLS et flux directs avec décodage matériel natif.",
+            "Navigation ergonomique 100% adaptée aux télécommandes de télévision (D-Pad, raccourcis).",
+            "Prise en charge multi-écrans : téléviseurs connectés de salon, boîtiers Android et appareils mobiles.",
+            "Interface utilisateur moderne, réactive et optimisée pour les écrans 4K et Full HD."
+          ],
+          architectureHighlights: [
+            "Intégration poussée avec les environnements Tizen et webOS pour des performances maximales.",
+            "Optimisation rigoureuse de la mémoire vive pour préserver la fluidité sur tous types de processeurs TV.",
+            "Gestion de mise en cache adaptative réduisant les temps de chargement des flux et des chaînes."
+          ],
+          metrics: [
+            { label: "Plateformes", value: "Tizen, webOS, Android" },
+            { label: "Contrôle", value: "D-Pad 100%" },
+            { label: "Décodage", value: "Matériel Natif" },
+            { label: "Résolution", value: "Full HD & 4K" }
+          ],
+          icon: "Tv",
+          gradient: "from-purple-500/20 via-violet-500/10 to-pink-500/20",
+          badgeColor: "bg-purple-500/10 text-purple-400 border-purple-500/30"
+        },
+        {
           id: "solux-energy",
           title: "SoluxEnergy.ma — Portail Commercial & Énergétique",
           tagline: "Plateforme web d'ingénierie énergétique bilingue RTL/LTR et haute conversion",
@@ -440,6 +469,35 @@ export const getPortfolioData = (lang: Language = 'en') => {
           badgeColor: "bg-amber-500/10 text-amber-400 border-amber-500/30"
         },
         {
+          id: "smart-tv-iptv-player",
+          title: "مشغل البث التلفزيوني الذكي متعدد الشاشات",
+          tagline: "محرك تشغيل فيديو سلس وعالي الكفاءة لشاشات Samsung Tizen و LG webOS و Android TV",
+          category: "smart-tv" as const,
+          categoryLabel: "التلفاز الذكي والبث",
+          stack: ["Samsung Tizen", "LG webOS", "Android TV", "Flutter", "HLS / MPEG-TS", "D-Pad Navigation", "Hardware Acceleration"],
+          description: "تطبيق متطور لتشغيل الوسائط والبث المباشر مصمم خصيصاً لأجهزة التلفاز الذكية والشاشات الكبيرة، يوفر سلاسة فائقة في التحكم عبر الريموت كنترول وتشغيل موثوق لقنوات البث عالي الدقة.",
+          features: [
+            "تشغيل سلس لتدفقات IPTV وقنوات البث المباشر (HLS, MPEG-TS) بفك تشفير عتادي أصيل.",
+            "دعم كامل ومريح لأجهزة التحكم عن بُعد (ريموت التلفاز D-Pad) مع استجابة فورية للأزرار.",
+            "توافق شامل عبر الشاشات الذكية من تلفزيونات الصالون وأجهزة Android TV والهواتف.",
+            "واجهة مستخدم احترافية وحديثة مصممة خصيصاً لتناسب شاشات العرض بدقة 4K و Full HD."
+          ],
+          architectureHighlights: [
+            "تكامل وثيق مع أنظمة تشغيل التلفاز (Tizen OS و LG webOS) لتحقيق أعلى أداء ممكن.",
+            "إدارة صارمة لاستهلاك الذاكرة لتفادي التباطؤ على معالجات شاشات التلفاز المحدودة.",
+            "تخزين مؤقت متكيف يقلل من وقت التبديل بين القنوات والتدفقات المباشرة."
+          ],
+          metrics: [
+            { label: "المنصات المدعومة", value: "Tizen, webOS, Android" },
+            { label: "التحكم بالريموت", value: "100% D-Pad" },
+            { label: "فك التشفير", value: "عتادي أصيل" },
+            { label: "الدقة", value: "Full HD & 4K" }
+          ],
+          icon: "Tv",
+          gradient: "from-purple-500/20 via-violet-500/10 to-pink-500/20",
+          badgeColor: "bg-purple-500/10 text-purple-400 border-purple-500/30"
+        },
+        {
           id: "solux-energy",
           title: "SoluxEnergy.ma — البوابة التجارية للطاقة الشمسية",
           tagline: "منصة ويب متطورة ثنائية اللغة تدعم العربية والفرنسية بمعدل تحويل عالٍ",
@@ -749,6 +807,35 @@ export const getPortfolioData = (lang: Language = 'en') => {
         icon: "Music",
         gradient: "from-amber-500/20 via-orange-500/10 to-red-500/20",
         badgeColor: "bg-amber-500/10 text-amber-400 border-amber-500/30"
+      },
+      {
+        id: "smart-tv-iptv-player",
+        title: "Multi-Screen IPTV & Streaming Player",
+        tagline: "Smooth video playback engine for Samsung Tizen, LG webOS & Android TV",
+        category: "smart-tv" as const,
+        categoryLabel: "Smart TV & Video Streaming",
+        stack: ["Samsung Tizen", "LG webOS", "Android TV", "Flutter", "HLS / MPEG-TS", "D-Pad Navigation", "Hardware Acceleration"],
+        description: "High-performance multimedia streaming application tailored for connected Smart TVs and mobile devices, engineered for smooth remote control navigation and reliable high-definition stream playback.",
+        features: [
+          "High-throughput playback engine orchestrating live IPTV feeds, HLS, and VOD with native hardware decoding.",
+          "Full Smart TV remote control ergonomics with fluid D-Pad direction navigation and shortcuts.",
+          "Cross-screen compatibility covering living room Smart TVs, Android TV boxes, and mobile clients.",
+          "Responsive high-fidelity user interface built for 4K and Full HD display standards."
+        ],
+        architectureHighlights: [
+          "Deep integration with native Smart TV operating systems (Tizen OS and LG webOS).",
+          "Strict memory management avoiding resource throttling on living room TV chipsets.",
+          "Adaptive network buffering delivering instant channel switching and minimal latency."
+        ],
+        metrics: [
+          { label: "Platforms", value: "Tizen, webOS, Android" },
+          { label: "Navigation", value: "100% D-Pad Ready" },
+          { label: "Decoding", value: "Native Hardware" },
+          { label: "Resolution", value: "Full HD & 4K" }
+        ],
+        icon: "Tv",
+        gradient: "from-purple-500/20 via-violet-500/10 to-pink-500/20",
+        badgeColor: "bg-purple-500/10 text-purple-400 border-purple-500/30"
       },
       {
         id: "solux-energy",
