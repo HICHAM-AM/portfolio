@@ -72,7 +72,7 @@ export const getPortfolioData = (lang: Language = 'en') => {
       projects: [
         {
           id: "passport-photo-ai",
-          title: "Passport & Visa Photo AI Maker",
+          title: "Générateur Mobile de Photos d'Identité & Visas (IA)",
           tagline: "Studio photo biométrique mobile intelligent 100% hors-ligne",
           category: "mobile-ai" as const,
           categoryLabel: "Mobile & IA Embarquée",
@@ -101,7 +101,7 @@ export const getPortfolioData = (lang: Language = 'en') => {
         },
         {
           id: "video-mp3-convertx",
-          title: "Video to MP3 ConvertX & AppConvert Mobile",
+          title: "Convertisseur Multimédia & Traitement Audio/Vidéo Mobile",
           tagline: "Station de conversion multimédia locale haute performance & IA",
           category: "media" as const,
           categoryLabel: "Média & Conversion",
@@ -159,7 +159,7 @@ export const getPortfolioData = (lang: Language = 'en') => {
         },
         {
           id: "solux-energy",
-          title: "SoluxEnergy.ma — Portail Commercial & Énergétique",
+          title: "Portail Web d'Ingénierie Solaire & Simulateur Énergétique",
           tagline: "Plateforme web d'ingénierie énergétique bilingue RTL/LTR et haute conversion",
           category: "web-saas" as const,
           categoryLabel: "Web Full-Stack & Entreprise",
@@ -188,7 +188,7 @@ export const getPortfolioData = (lang: Language = 'en') => {
         },
         {
           id: "video-ai-platform",
-          title: "Video AI Platform — Architecture Distribuée",
+          title: "Plateforme SaaS Distribuée de Génération Vidéo par IA",
           tagline: "SaaS génératif distribué avec files de traitement asynchrone lourdes",
           category: "web-saas" as const,
           categoryLabel: "SaaS Génératif & Microservices",
@@ -412,7 +412,7 @@ export const getPortfolioData = (lang: Language = 'en') => {
       projects: [
         {
           id: "passport-photo-ai",
-          title: "Passport & Visa Photo AI Maker",
+          title: "تطبيق الذكاء الاصطناعي لصور وثائق الهوية والتأشيرات",
           tagline: "استوديو صور جوازات وتأشيرات بيومترية يعمل 100% دون إنترنت",
           category: "mobile-ai" as const,
           categoryLabel: "الجوال والذكاء الاصطناعي",
@@ -441,7 +441,7 @@ export const getPortfolioData = (lang: Language = 'en') => {
         },
         {
           id: "video-mp3-convertx",
-          title: "Video to MP3 ConvertX & AppConvert Mobile",
+          title: "منظومة معالجة وتحويل الوسائط والصوتيات عالية الأداء",
           tagline: "منظومة معالجة وتحويل الوسائط بالذكاء الاصطناعي على الهاتف",
           category: "media" as const,
           categoryLabel: "الوسائط والتحويل",
@@ -499,7 +499,7 @@ export const getPortfolioData = (lang: Language = 'en') => {
         },
         {
           id: "solux-energy",
-          title: "SoluxEnergy.ma — البوابة التجارية للطاقة الشمسية",
+          title: "بوابة هندسة الطاقة الشمسية والمحاكاة التفاعلية",
           tagline: "منصة ويب متطورة ثنائية اللغة تدعم العربية والفرنسية بمعدل تحويل عالٍ",
           category: "web-saas" as const,
           categoryLabel: "الويب الشامل والمؤسسات",
@@ -528,7 +528,7 @@ export const getPortfolioData = (lang: Language = 'en') => {
         },
         {
           id: "video-ai-platform",
-          title: "Video AI Platform — منصة الذكاء الاصطناعي الموزعة",
+          title: "منصة سحابية موزعة لتوليد ومعالجة الفيديو بالذكاء الاصطناعي",
           tagline: "منظومة SaaS موزعة لتوليد الفيديو ومعالجة الطوابير الحوسبية الثقيلة",
           category: "web-saas" as const,
           categoryLabel: "الـ SaaS التوليدي والأنظمة الموزعة",
@@ -752,7 +752,7 @@ export const getPortfolioData = (lang: Language = 'en') => {
     projects: [
       {
         id: "passport-photo-ai",
-        title: "Passport & Visa Photo AI Maker",
+        title: "On-Device AI Passport & Visa Photo Generator",
         tagline: "Intelligent on-device biometric photo studio 100% offline",
         category: "mobile-ai" as const,
         categoryLabel: "Mobile & On-Device AI",
@@ -781,7 +781,7 @@ export const getPortfolioData = (lang: Language = 'en') => {
       },
       {
         id: "video-mp3-convertx",
-        title: "Video to MP3 ConvertX & AppConvert Mobile",
+        title: "High-Performance Mobile Audio & Video Processing Suite",
         tagline: "High-performance local media processing & AI background removal",
         category: "media" as const,
         categoryLabel: "Media & Conversion",
@@ -839,7 +839,7 @@ export const getPortfolioData = (lang: Language = 'en') => {
       },
       {
         id: "solux-energy",
-        title: "SoluxEnergy.ma — Clean Energy Commercial Portal",
+        title: "Commercial Solar Engineering & Energy Estimator Portal",
         tagline: "Bilingual RTL/LTR high-conversion engineering & solar estimation platform",
         category: "web-saas" as const,
         categoryLabel: "Enterprise Web & Full-Stack",
@@ -868,7 +868,7 @@ export const getPortfolioData = (lang: Language = 'en') => {
       },
       {
         id: "video-ai-platform",
-        title: "Video AI Platform — Distributed Microservices",
+        title: "Distributed Generative Video SaaS & Render Queue Engine",
         tagline: "Scalable generative AI SaaS with heavy asynchronous background workers",
         category: "web-saas" as const,
         categoryLabel: "Generative SaaS & Distributed Architecture",
