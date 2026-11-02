@@ -7,21 +7,22 @@ import {
   Search, 
   Cpu
 } from 'lucide-react';
-import { TECH_MATRIX } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
+import { getPortfolioData } from '../data/portfolioData';
 
 export const SkillsSection: React.FC = () => {
+  const { language, t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
+  const { techMatrix } = getPortfolioData(language);
+
   const categories = [
-    { id: 'all', label: 'Toutes les Technologies' },
-    { id: 'Mobile & Multiplateforme', label: 'Mobile & IA' },
-    { id: 'Web & Full-Stack', label: 'Web & SaaS' },
-    { id: 'Smart TV & Streaming', label: 'Smart TV' },
-    { id: 'Sécurité & Infrastructure', label: 'Sécurité & Infra' }
+    { id: 'all', label: t.skills.allTech },
+    ...techMatrix.map(cat => ({ id: cat.category, label: cat.category }))
   ];
 
-  const filteredCategories = TECH_MATRIX.map(cat => {
+  const filteredCategories = techMatrix.map(cat => {
     const matchesCategory = selectedCategory === 'all' || cat.category === selectedCategory;
     const filteredSkills = cat.skills.filter(s => 
       s.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -49,25 +50,25 @@ export const SkillsSection: React.FC = () => {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-mono text-cyan-400 mb-3">
               <Cpu className="w-3.5 h-3.5" />
-              <span>Matrice des Compétences Techniques</span>
+              <span>{t.skills.pill}</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">
-              Stack Maîtrisée de Bout en Bout
+              {t.skills.title}
             </h2>
             <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-xl font-light">
-              De l'UI mobile Flutter 60 FPS jusqu'aux protocoles réseau de niveau DNS et serveurs Linux.
+              {t.skills.subtitle}
             </p>
           </div>
 
           {/* Search bar */}
           <div className="relative w-full sm:w-72">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 rtl:left-auto rtl:right-3" />
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Filtrer une technologie..."
-              className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900/90 border border-slate-700/80 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500/80 transition-colors"
+              placeholder={t.skills.searchPlaceholder}
+              className="w-full pl-9 pr-4 rtl:pl-4 rtl:pr-9 py-2 rounded-xl bg-slate-900/90 border border-slate-700/80 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500/80 transition-colors"
             />
           </div>
         </div>
@@ -125,7 +126,7 @@ export const SkillsSection: React.FC = () => {
                     >
                       <span className="font-medium font-mono text-[12px]">{skill.name}</span>
                       <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono ${
-                        skill.level.includes('Expert')
+                        skill.level.includes('Expert') || skill.level.includes('خبير')
                           ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/20'
                           : skill.level.includes('Senior')
                           ? 'bg-purple-500/15 text-purple-300 border border-purple-500/20'
@@ -140,8 +141,8 @@ export const SkillsSection: React.FC = () => {
 
               {/* Bottom footer note */}
               <div className="mt-6 pt-4 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-slate-500 font-mono">
-                <span>Architecture Clean & Modulaire</span>
-                <span className="text-cyan-400">{cat.filteredSkills.length} compétences listées</span>
+                <span>{t.skills.cleanArchNote}</span>
+                <span className="text-cyan-400">{cat.filteredSkills.length} {t.skills.skillsListed}</span>
               </div>
             </div>
           ))}

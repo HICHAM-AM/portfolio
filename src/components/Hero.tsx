@@ -8,9 +8,11 @@ import {
   Terminal,
   Lock
 } from 'lucide-react';
-import { PROFILE_DATA } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
+import { PROFILE_CONSTANTS } from '../data/portfolioData';
 
 export const Hero: React.FC = () => {
+  const { t, isRtl } = useLanguage();
   const [activeTab, setActiveTab] = useState<'flutter' | 'nextjs' | 'smarttv' | 'security'>('flutter');
   const [copied, setCopied] = useState(false);
 
@@ -18,8 +20,8 @@ export const Hero: React.FC = () => {
     flutter: {
       title: "Flutter + On-Device ML Kit",
       file: "biometric_segmenter.dart",
-      badge: "60 FPS • 100% Hors-Ligne",
-      code: `// Traitement d'image 100% local sans serveur
+      badge: "60 FPS • 100% Offline",
+      code: `// 100% Local on-device execution without cloud APIs
 final selfieSegmenter = SelfieSegmenter(
   options: SegmenterOptions(
     mode: SegmenterMode.single,
@@ -27,7 +29,7 @@ final selfieSegmenter = SelfieSegmenter(
   ),
 );
 
-// Exécution sur le GPU/NPU matériel
+// Executed directly on hardware GPU/NPU
 final mask = await selfieSegmenter.processImage(inputImage);
 final normalizedPassport = await PassportEngine.cropToStandard(
   image: originalBytes,
@@ -40,7 +42,7 @@ final normalizedPassport = await PassportEngine.cropToStandard(
       title: "Next.js 16 + Redis BullMQ",
       file: "video-worker.service.ts",
       badge: "Distributed Async Architecture",
-      code: `// Worker asynchrone découplé pour charges lourdes
+      code: `// Decoupled asynchronous worker for heavy compute
 export const videoQueue = new Queue('video-processing', {
   connection: redisConnection,
   defaultJobOptions: {
@@ -62,12 +64,12 @@ export const worker = new Worker('video-processing', async (job) => {
       title: "Smart TV Engine (Tizen & webOS)",
       file: "tizen-avplay.controller.js",
       badge: "AVPlay & Luna Bus Native",
-      code: `// Initialisation lecteur Tizen AVPlay haute cadence
+      code: `// Native hardware-accelerated playback on Tizen OS
 webapis.avplay.open(streamUrl);
 webapis.avplay.setDisplayRect(0, 0, 1920, 1080);
 webapis.avplay.setDisplayMethod('PLAYER_DISPLAY_MODE_AUTO_ASPECT_RATIO');
 
-// Écoute des flux IPTV / MPEG-TS
+// Low-latency IPTV / MPEG-TS feeds
 webapis.avplay.setListener({
   onbufferingcomplete: () => console.log('Buffer ready'),
   oncurrentplaytime: (time) => syncDpadUI(time),
@@ -79,14 +81,14 @@ webapis.avplay.prepareAsync(() => webapis.avplay.play());`
       title: "Cloudflare Strict & Anti-Spoofing",
       file: "cloudflare-waf.rule.tf",
       badge: "Full Strict • Zero-Trust",
-      code: `// Durcissement Edge & En-têtes HTTP
+      code: `// Edge Hardening & Custom WAF Rules
 resource "cloudflare_waf_rule" "strict_defense" {
   zone_id     = var.cloudflare_zone_id
   mode        = "block"
   expression  = "(http.request.uri.path contains '/wp-login' or cf.threat_score gt 25)"
 }
 
-// DNS Anti-Spoofing & DMARC Strict
+// Anti-Spoofing DNS & DMARC Enforcement
 // TXT @ "v=spf1 include:_spf.google.com -all"
 // TXT default._domainkey "v=DKIM1; k=rsa; p=MIIBIjANBgkq..."
 // TXT _dmarc "v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s;"`
@@ -108,35 +110,28 @@ resource "cloudflare_waf_rule" "strict_defense" {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
-          {/* Left Column: Headline & Value Proposition */}
-          <div className="lg:col-span-7 flex flex-col items-start text-left">
+          {/* Headline & Value Proposition */}
+          <div className="lg:col-span-7 flex flex-col items-start text-start">
             
             {/* Top Identity Pill */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-cyan-500/30 shadow-lg shadow-cyan-500/10 mb-6">
               <span className="flex h-2 w-2 rounded-full bg-cyan-400 animate-pulse"></span>
               <span className="text-xs font-mono font-medium text-cyan-300 tracking-wide">
-                Senior Mobile & Full-Stack Architect
-              </span>
-              <span className="text-slate-600">|</span>
-              <span className="text-xs text-slate-400 font-mono">
-                Flutter • Next.js • IA • Sécurité
+                {t.hero.statusPill}
               </span>
             </div>
 
-            {/* Main Punchy Title */}
+            {/* Main Title */}
             <h1 className="text-4xl sm:text-5xl xl:text-6xl font-display font-extrabold text-white tracking-tight leading-[1.1] mb-6">
-              Bâtisseur de solutions <br />
+              {t.hero.headlinePart1} <br />
               <span className="gradient-text-cyan">
-                prêtes pour la production
+                {t.hero.headlineHighlight}
               </span>
             </h1>
 
-            {/* Subtitle / Pitch */}
+            {/* Subtitle */}
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-8 max-w-2xl font-light">
-              J'accompagne les startups, entreprises et créateurs dans la transformation de concepts complexes en applications scalables, rapides à 
-              <span className="text-cyan-400 font-medium"> 60 FPS</span>, protégées par 
-              <span className="text-emerald-400 font-medium"> Cloudflare Full Strict</span> et prêtes pour le 
-              <span className="text-purple-400 font-medium"> Google Play Store & Smart TVs</span>.
+              {t.hero.subheadline}
             </p>
 
             {/* Action Buttons */}
@@ -145,18 +140,18 @@ resource "cloudflare_waf_rule" "strict_defense" {
                 href="#projets"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-semibold text-sm bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all hover:scale-[1.02]"
               >
-                <span>Explorer mes projets</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>{t.hero.exploreProjects}</span>
+                <ArrowRight className={`w-4 h-4 ${isRtl ? 'rotate-180' : ''}`} />
               </a>
 
               <a
-                href={PROFILE_DATA.fiverrUrl}
+                href={PROFILE_CONSTANTS.fiverrUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-semibold text-sm bg-[#1dbf73]/15 text-[#1dbf73] hover:bg-[#1dbf73]/25 border border-[#1dbf73]/30 transition-all hover:scale-[1.02]"
               >
                 <span className="font-black text-sm">fi</span>
-                <span>Commander sur Fiverr</span>
+                <span>{t.hero.orderFiverr}</span>
                 <ExternalLink className="w-3.5 h-3.5 opacity-80" />
               </a>
 
@@ -164,33 +159,33 @@ resource "cloudflare_waf_rule" "strict_defense" {
                 href="#contact"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-semibold text-sm bg-slate-900/80 hover:bg-slate-800 text-slate-200 border border-slate-700/80 transition-all"
               >
-                <span>Audit & Contact direct</span>
+                <span>{t.hero.directAudit}</span>
               </a>
             </div>
 
             {/* Quick Metrics Bar */}
             <div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-slate-800/80">
               <div className="flex flex-col">
-                <span className="text-2xl font-display font-bold text-cyan-400">60 FPS</span>
-                <span className="text-xs text-slate-400">Mobile Flutter fluide</span>
+                <span className="text-2xl font-display font-bold text-cyan-400">{t.hero.metrics.fps.title}</span>
+                <span className="text-xs text-slate-400">{t.hero.metrics.fps.desc}</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-2xl font-display font-bold text-emerald-400">100% Local</span>
-                <span className="text-xs text-slate-400">IA ML Kit & TFLite</span>
+                <span className="text-2xl font-display font-bold text-emerald-400">{t.hero.metrics.ai.title}</span>
+                <span className="text-xs text-slate-400">{t.hero.metrics.ai.desc}</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-2xl font-display font-bold text-purple-400">Full Strict</span>
-                <span className="text-xs text-slate-400">Cloudflare & DNS WAF</span>
+                <span className="text-2xl font-display font-bold text-purple-400">{t.hero.metrics.security.title}</span>
+                <span className="text-xs text-slate-400">{t.hero.metrics.security.desc}</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-2xl font-display font-bold text-amber-400">3+ OS TV</span>
-                <span className="text-xs text-slate-400">Tizen, webOS & Android</span>
+                <span className="text-2xl font-display font-bold text-amber-400">{t.hero.metrics.screens.title}</span>
+                <span className="text-xs text-slate-400">{t.hero.metrics.screens.desc}</span>
               </div>
             </div>
 
           </div>
 
-          {/* Right Column: Interactive Code & Architecture Terminal */}
+          {/* Right Column: Code & Architecture Terminal Sandbox */}
           <div className="lg:col-span-5">
             <div className="glass-panel rounded-2xl overflow-hidden border border-slate-800 shadow-2xl relative">
               
@@ -200,7 +195,7 @@ resource "cloudflare_waf_rule" "strict_defense" {
                   <div className="w-3 h-3 rounded-full bg-rose-500/80"></div>
                   <div className="w-3 h-3 rounded-full bg-amber-500/80"></div>
                   <div className="w-3 h-3 rounded-full bg-emerald-500/80"></div>
-                  <span className="text-xs font-mono text-slate-400 ml-2 flex items-center gap-1.5">
+                  <span className="text-xs font-mono text-slate-400 mx-2 flex items-center gap-1.5" dir="ltr">
                     <Terminal className="w-3.5 h-3.5 text-cyan-400" />
                     production_runtime.env
                   </span>
@@ -209,17 +204,17 @@ resource "cloudflare_waf_rule" "strict_defense" {
                 <button
                   onClick={handleCopy}
                   className="flex items-center gap-1 text-[11px] font-mono text-slate-400 hover:text-white px-2 py-1 rounded bg-slate-800/60 hover:bg-slate-700/60 transition-colors"
-                  title="Copier le code"
+                  title="Copy Code"
                 >
                   {copied ? (
                     <>
                       <Check className="w-3 h-3 text-emerald-400" />
-                      <span className="text-emerald-400">Copié</span>
+                      <span className="text-emerald-400">{t.hero.terminal.copied}</span>
                     </>
                   ) : (
                     <>
                       <Copy className="w-3 h-3" />
-                      <span>Copier</span>
+                      <span>{t.hero.terminal.copy}</span>
                     </>
                   )}
                 </button>
@@ -235,7 +230,7 @@ resource "cloudflare_waf_rule" "strict_defense" {
                       : 'text-slate-400 hover:text-slate-200'
                   }`}
                 >
-                  Flutter/AI
+                  {t.hero.terminal.tabFlutter}
                 </button>
                 <button
                   onClick={() => setActiveTab('nextjs')}
@@ -245,7 +240,7 @@ resource "cloudflare_waf_rule" "strict_defense" {
                       : 'text-slate-400 hover:text-slate-200'
                   }`}
                 >
-                  Next/Redis
+                  {t.hero.terminal.tabNext}
                 </button>
                 <button
                   onClick={() => setActiveTab('smarttv')}
@@ -255,7 +250,7 @@ resource "cloudflare_waf_rule" "strict_defense" {
                       : 'text-slate-400 hover:text-slate-200'
                   }`}
                 >
-                  Smart TV
+                  {t.hero.terminal.tabSmartTV}
                 </button>
                 <button
                   onClick={() => setActiveTab('security')}
@@ -265,12 +260,12 @@ resource "cloudflare_waf_rule" "strict_defense" {
                       : 'text-slate-400 hover:text-slate-200'
                   }`}
                 >
-                  WAF/DNS
+                  {t.hero.terminal.tabWaf}
                 </button>
               </div>
 
               {/* Code Snippet Content */}
-              <div className="p-4 bg-[#080b12] text-xs font-mono leading-relaxed overflow-x-auto min-h-[290px] flex flex-col justify-between">
+              <div className="p-4 bg-[#080b12] text-xs font-mono leading-relaxed overflow-x-auto min-h-[290px] flex flex-col justify-between" dir="ltr">
                 <div>
                   <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-800/60 text-[11px]">
                     <span className="text-slate-400 flex items-center gap-1.5">
@@ -290,9 +285,9 @@ resource "cloudflare_waf_rule" "strict_defense" {
                 <div className="pt-3 mt-3 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-slate-500">
                   <span className="flex items-center gap-1 text-emerald-400">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-                    Moteur compilé en production
+                    {t.hero.terminal.compiledEngine}
                   </span>
-                  <span>100% Typé TypeScript & Dart</span>
+                  <span>{t.hero.terminal.typedNotice}</span>
                 </div>
               </div>
 
@@ -300,9 +295,9 @@ resource "cloudflare_waf_rule" "strict_defense" {
               <div className="px-4 py-2.5 bg-[#0e1424] border-t border-slate-800 flex items-center justify-between text-xs">
                 <span className="text-slate-300 font-medium flex items-center gap-1.5">
                   <Lock className="w-3.5 h-3.5 text-cyan-400" />
-                  Certifié Keystore / Cloudflare / Docker
+                  {t.hero.terminal.certifiedNotice}
                 </span>
-                <span className="text-cyan-400 font-mono font-semibold">Ready</span>
+                <span className="text-cyan-400 font-mono font-semibold">{t.hero.terminal.ready}</span>
               </div>
 
             </div>

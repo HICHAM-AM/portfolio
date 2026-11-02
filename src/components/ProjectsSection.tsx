@@ -10,7 +10,8 @@ import {
   Layers, 
   ChevronRight
 } from 'lucide-react';
-import { PROJECTS, PROFILE_DATA, type Project } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
+import { getPortfolioData, PROFILE_CONSTANTS, type Project } from '../data/portfolioData';
 import { ProjectModal } from './ProjectModal';
 
 interface ProjectsSectionProps {
@@ -18,17 +19,20 @@ interface ProjectsSectionProps {
 }
 
 export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjectForQuote }) => {
+  const { language, t, isRtl } = useLanguage();
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'mobile' | 'smart-tv' | 'web'>('all');
   const [activeModalProject, setActiveModalProject] = useState<Project | null>(null);
 
+  const { projects } = getPortfolioData(language);
+
   const filterTabs = [
-    { id: 'all', label: 'Tous les Projets', count: PROJECTS.length },
-    { id: 'mobile', label: 'Mobile & IA Embarquée', count: PROJECTS.filter(p => p.category === 'mobile-ai' || p.category === 'media').length },
-    { id: 'smart-tv', label: 'Smart TV & Streaming', count: PROJECTS.filter(p => p.category === 'smart-tv').length },
-    { id: 'web', label: 'Web Full-Stack & SaaS', count: PROJECTS.filter(p => p.category === 'web-saas').length },
+    { id: 'all', label: t.projects.filters.all, count: projects.length },
+    { id: 'mobile', label: t.projects.filters.mobile, count: projects.filter(p => p.category === 'mobile-ai' || p.category === 'media').length },
+    { id: 'smart-tv', label: t.projects.filters.smartTv, count: projects.filter(p => p.category === 'smart-tv').length },
+    { id: 'web', label: t.projects.filters.web, count: projects.filter(p => p.category === 'web-saas').length },
   ];
 
-  const filteredProjects = PROJECTS.filter((p) => {
+  const filteredProjects = projects.filter((p) => {
     if (selectedFilter === 'all') return true;
     if (selectedFilter === 'mobile') return p.category === 'mobile-ai' || p.category === 'media';
     if (selectedFilter === 'smart-tv') return p.category === 'smart-tv';
@@ -56,13 +60,13 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs font-mono text-cyan-400 mb-3">
               <FolderGit2 className="w-3.5 h-3.5" />
-              <span>Réalisations & Produits Phares</span>
+              <span>{t.projects.pill}</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">
-              Projets Conçus pour la Performance
+              {t.projects.title}
             </h2>
             <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-xl font-light">
-              Des applications mobiles exploitant le Machine Learning local aux lecteurs Smart TV et architectures SaaS distribuées.
+              {t.projects.subtitle}
             </p>
           </div>
 
@@ -151,9 +155,9 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
                 >
                   <span className="flex items-center gap-1.5">
                     <Layers className="w-3.5 h-3.5" />
-                    Architecture & Fonctionnalités Clés
+                    {t.projects.architectureAction}
                   </span>
-                  <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                  <ChevronRight className={`w-4 h-4 group-hover/btn:translate-x-1 transition-transform ${isRtl ? 'rotate-180 group-hover/btn:-translate-x-1' : ''}`} />
                 </button>
               </div>
             </div>
@@ -168,10 +172,10 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
             </div>
             <div>
               <h4 className="text-lg font-display font-bold text-white">
-                Vous avez un projet sur-mesure ou une spécification technique ?
+                {t.projects.customBanner.title}
               </h4>
               <p className="text-sm text-slate-300 mt-1 font-light">
-                Application mobile Flutter, portage TV Tizen/webOS ou plateforme web Next.js 16 : livraison rapide et propre garantie.
+                {t.projects.customBanner.desc}
               </p>
             </div>
           </div>
@@ -181,15 +185,15 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
               href="#contact"
               className="px-5 py-2.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all hover:scale-[1.02]"
             >
-              Échanger sur votre projet
+              {t.projects.customBanner.ctaDiscuss}
             </a>
             <a
-              href={PROFILE_DATA.fiverrUrl}
+              href={PROFILE_CONSTANTS.fiverrUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2.5 rounded-xl text-xs font-semibold bg-[#1dbf73]/15 text-[#1dbf73] border border-[#1dbf73]/30 hover:bg-[#1dbf73]/25 transition-colors"
             >
-              Fiverr Direct
+              {t.projects.customBanner.ctaFiverr}
             </a>
           </div>
         </div>

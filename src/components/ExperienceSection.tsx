@@ -1,8 +1,12 @@
 import React from 'react';
 import { Briefcase, Calendar, CheckCircle2 } from 'lucide-react';
-import { EXPERIENCES } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
+import { getPortfolioData } from '../data/portfolioData';
 
 export const ExperienceSection: React.FC = () => {
+  const { language, t } = useLanguage();
+  const { experiences } = getPortfolioData(language);
+
   return (
     <section id="parcours" className="py-24 relative bg-[#080a0f]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -11,19 +15,19 @@ export const ExperienceSection: React.FC = () => {
         <div className="flex flex-col items-center text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-mono text-cyan-400 mb-3">
             <Briefcase className="w-3.5 h-3.5" />
-            <span>Historique Professionnel & Réalisations</span>
+            <span>{t.career.pill}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">
-            Parcours & Expériences Clés
+            {t.career.title}
           </h2>
           <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-xl font-light">
-            Une trajectoire axée sur les projets à haute exigence technique et les standards industriels.
+            {t.career.subtitle}
           </p>
         </div>
 
         {/* Timeline Grid */}
         <div className="max-w-4xl mx-auto space-y-8 relative before:absolute before:inset-0 before:left-5 md:before:left-1/2 md:before:-translate-x-1/2 before:w-0.5 before:bg-gradient-to-b before:from-cyan-500/50 before:via-blue-500/30 before:to-transparent">
-          {EXPERIENCES.map((exp, idx) => (
+          {experiences.map((exp, idx) => (
             <div 
               key={idx}
               className={`relative flex flex-col md:flex-row gap-8 items-start ${
@@ -68,7 +72,7 @@ export const ExperienceSection: React.FC = () => {
                 </div>
 
                 {/* Tech chips */}
-                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-slate-800">
+                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-slate-800" dir="ltr">
                   {exp.technologies.map((tech, tIdx) => (
                     <span 
                       key={tIdx}

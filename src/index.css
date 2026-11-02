@@ -18,6 +18,23 @@
   .font-display {
     font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
   }
+
+  /* Support for Arabic typography */
+  [dir="rtl"] body,
+  [dir="rtl"] {
+    font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+  }
+
+  [dir="rtl"] .font-display {
+    font-family: 'Cairo', system-ui, sans-serif;
+    letter-spacing: normal;
+  }
+
+  [dir="rtl"] code,
+  [dir="rtl"] pre {
+    direction: ltr;
+    text-align: left;
+  }
 }
 
 /* Custom glow and animations */

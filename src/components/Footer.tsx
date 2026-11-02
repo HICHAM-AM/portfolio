@@ -5,9 +5,13 @@ import {
   Mail, 
   MapPin
 } from 'lucide-react';
-import { PROFILE_DATA, PROJECTS } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
+import { getPortfolioData, PROFILE_CONSTANTS } from '../data/portfolioData';
 
 export const Footer: React.FC = () => {
+  const { language, t } = useLanguage();
+  const { profile, projects, services } = getPortfolioData(language);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -29,41 +33,41 @@ export const Footer: React.FC = () => {
               </div>
               <div className="flex flex-col">
                 <span className="font-display font-bold text-base text-white tracking-tight group-hover:text-cyan-400 transition-colors">
-                  {PROFILE_DATA.name}
+                  {PROFILE_CONSTANTS.name}
                 </span>
                 <span className="text-[11px] text-slate-500 font-mono">
-                  {PROFILE_DATA.role}
+                  {t.footer.role}
                 </span>
               </div>
             </a>
 
             <p className="text-slate-300 font-light leading-relaxed max-w-sm text-xs">
-              Concepteur et bâtisseur de solutions logicielles prêtes pour la production, alliant performance chirurgicale 60 FPS, sécurité de bout en bout et expérience utilisateur d'élite.
+              {t.footer.bio}
             </p>
 
             <div className="pt-2 flex flex-col gap-2">
               <div className="flex items-center gap-2 text-slate-400 text-xs">
                 <MapPin className="w-3.5 h-3.5 text-cyan-400" />
-                <span>{PROFILE_DATA.location}</span>
+                <span>{profile.location}</span>
               </div>
-              <div className="flex items-center gap-2 text-slate-400 text-xs font-mono">
+              <div className="flex items-center gap-2 text-slate-400 text-xs font-mono" dir="ltr">
                 <Mail className="w-3.5 h-3.5 text-cyan-400" />
-                <a href={`mailto:${PROFILE_DATA.email}`} className="hover:text-cyan-300 transition-colors">
-                  {PROFILE_DATA.email}
+                <a href={`mailto:${PROFILE_CONSTANTS.email}`} className="hover:text-cyan-300 transition-colors">
+                  {PROFILE_CONSTANTS.email}
                 </a>
               </div>
             </div>
 
             <div className="pt-2">
               <a
-                href={PROFILE_DATA.fiverrUrl}
+                href={PROFILE_CONSTANTS.fiverrUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#1dbf73]/15 text-[#1dbf73] border border-[#1dbf73]/30 hover:bg-[#1dbf73]/25 transition-colors"
               >
                 <span className="font-bold">fi</span>
-                <span>Commander sur Fiverr ({PROFILE_DATA.username})</span>
-                <ExternalLink className="w-3 h-3 ml-0.5" />
+                <span>{t.nav.orderFiverr} ({PROFILE_CONSTANTS.username})</span>
+                <ExternalLink className="w-3 h-3 mx-0.5" />
               </a>
             </div>
           </div>
@@ -71,29 +75,29 @@ export const Footer: React.FC = () => {
           {/* Col 3: Navigation Links */}
           <div className="space-y-3">
             <h4 className="text-xs font-mono uppercase tracking-wider text-white font-semibold">
-              Navigation
+              {t.footer.navTitle}
             </h4>
             <ul className="space-y-2">
               <li>
-                <a href="#accueil" className="hover:text-cyan-400 transition-colors">Accueil</a>
+                <a href="#accueil" className="hover:text-cyan-400 transition-colors">{t.nav.home}</a>
               </li>
               <li>
-                <a href="#projets" className="hover:text-cyan-400 transition-colors">Projets Phares</a>
+                <a href="#projets" className="hover:text-cyan-400 transition-colors">{t.nav.projects}</a>
               </li>
               <li>
-                <a href="#services" className="hover:text-cyan-400 transition-colors">Services & Offres</a>
+                <a href="#services" className="hover:text-cyan-400 transition-colors">{t.nav.services}</a>
               </li>
               <li>
-                <a href="#competences" className="hover:text-cyan-400 transition-colors">Matrice des Compétences</a>
+                <a href="#competences" className="hover:text-cyan-400 transition-colors">{t.nav.skills}</a>
               </li>
               <li>
-                <a href="#securite" className="hover:text-cyan-400 transition-colors">Sécurité & Cloudflare</a>
+                <a href="#securite" className="hover:text-cyan-400 transition-colors">{t.nav.security}</a>
               </li>
               <li>
-                <a href="#parcours" className="hover:text-cyan-400 transition-colors">Parcours & Expérience</a>
+                <a href="#parcours" className="hover:text-cyan-400 transition-colors">{t.nav.career}</a>
               </li>
               <li>
-                <a href="#contact" className="hover:text-cyan-400 transition-colors">Contact & Devis</a>
+                <a href="#contact" className="hover:text-cyan-400 transition-colors">{t.nav.contact}</a>
               </li>
             </ul>
           </div>
@@ -101,10 +105,10 @@ export const Footer: React.FC = () => {
           {/* Col 4: Projets Réalisés */}
           <div className="space-y-3">
             <h4 className="text-xs font-mono uppercase tracking-wider text-white font-semibold">
-              Projets Phares
+              {t.footer.projectsTitle}
             </h4>
             <ul className="space-y-2">
-              {PROJECTS.map((p) => (
+              {projects.map((p) => (
                 <li key={p.id}>
                   <a href="#projets" className="hover:text-cyan-400 transition-colors truncate block">
                     {p.title.split('—')[0]}
@@ -117,24 +121,16 @@ export const Footer: React.FC = () => {
           {/* Col 5: Services & Standards */}
           <div className="space-y-3">
             <h4 className="text-xs font-mono uppercase tracking-wider text-white font-semibold">
-              Prestations & Offres
+              {t.footer.servicesTitle}
             </h4>
             <ul className="space-y-2">
-              <li>
-                <a href="#services" className="hover:text-cyan-400 transition-colors">Mobile & IA Embarquée</a>
-              </li>
-              <li>
-                <a href="#services" className="hover:text-cyan-400 transition-colors">Web Next.js 16 SaaS</a>
-              </li>
-              <li>
-                <a href="#services" className="hover:text-cyan-400 transition-colors">Smart TV (Tizen / webOS)</a>
-              </li>
-              <li>
-                <a href="#services" className="hover:text-cyan-400 transition-colors">Audit Cloudflare & WAF</a>
-              </li>
-              <li>
-                <a href="#securite" className="hover:text-cyan-400 transition-colors">Anti-Spoofing SPF/DKIM</a>
-              </li>
+              {services.map((s) => (
+                <li key={s.id}>
+                  <a href="#services" className="hover:text-cyan-400 transition-colors truncate block">
+                    {s.title}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -143,14 +139,14 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
           <div className="flex items-center gap-2 text-slate-500">
-            <span>© {new Date().getFullYear()} {PROFILE_DATA.name}</span>
+            <span>© {new Date().getFullYear()} {PROFILE_CONSTANTS.name}</span>
             <span>•</span>
             <span className="text-emerald-400 flex items-center gap-1">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-              All Systems Operational
+              {t.footer.operational}
             </span>
             <span>•</span>
-            <span>Production Grade</span>
+            <span>{t.footer.productionGrade}</span>
           </div>
 
           <div className="flex items-center gap-4">
@@ -158,7 +154,7 @@ export const Footer: React.FC = () => {
               onClick={scrollToTop}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyan-500/50 text-slate-300 hover:text-white transition-all shadow-sm"
             >
-              <span>Haut de page</span>
+              <span>{t.footer.backToTop}</span>
               <ArrowUp className="w-3.5 h-3.5 text-cyan-400" />
             </button>
           </div>

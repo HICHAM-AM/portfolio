@@ -11,53 +11,31 @@ import {
   Settings2,
   FileCheck
 } from 'lucide-react';
-import { SERVICES, PROFILE_DATA } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
+import { 
+  getPortfolioData, 
+  getPlatformOptions, 
+  getFeatureOptions, 
+  PROFILE_CONSTANTS 
+} from '../data/portfolioData';
 
 interface ServicesSectionProps {
   onConfigureProject: (configSummary: string) => void;
 }
 
 export const ServicesSection: React.FC<ServicesSectionProps> = ({ onConfigureProject }) => {
+  const { language, t, isRtl } = useLanguage();
+
+  const { services } = getPortfolioData(language);
+  const platformOptions = getPlatformOptions(language);
+  const featureOptions = getFeatureOptions(language);
+
   // Interactive Project Builder State
   const [selectedPlatform, setSelectedPlatform] = useState<string>('mobile');
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([
     'ia-offline',
     'playstore-aab'
   ]);
-
-  const platformOptions = [
-    { id: 'mobile', name: 'Application Mobile Flutter (iOS & Android)', icon: 'Smartphone' },
-    { id: 'web', name: 'Application Web & SaaS Next.js 16', icon: 'Globe' },
-    { id: 'smart-tv', name: 'App Smart TV (Samsung Tizen & LG webOS)', icon: 'Tv' },
-    { id: 'security', name: 'Audit Sécurité & Durcissement Cloudflare', icon: 'ShieldAlert' }
-  ];
-
-  const featureOptions: Record<string, { id: string; label: string; desc: string }[]> = {
-    mobile: [
-      { id: 'ia-offline', label: 'IA Embarquée Hors-Ligne (ML Kit / TFLite)', desc: 'Zéro coût API serveur et confidentialité totale' },
-      { id: 'playstore-aab', label: 'Bundle .AAB Signé Google Play Console', desc: 'Prêt pour la publication immédiate' },
-      { id: 'admob', label: 'Monétisation Google AdMob & app-ads.txt', desc: 'Bannières, interstitiels et rewarded ads' },
-      { id: 'media-ffmpeg', label: 'Traitement Vidéo/Audio FFmpeg Kit', desc: 'Transcodage et découpe en local' },
-    ],
-    web: [
-      { id: 'next16-app', label: 'Next.js 16 App Router & Server Components', desc: 'Performance maximale et SEO technique' },
-      { id: 'rtl-arabic', label: 'Support Bilingue RTL (Arabe) & LTR', desc: 'Direction de lecture fluide et typographie adaptée' },
-      { id: 'bullmq-redis', label: 'Files Asynchrones Redis / BullMQ', desc: 'Pour les calculs lourds sans ralentir l\'API' },
-      { id: 'caddy-docker', label: 'Déploiement Docker & Caddy HTTPS Auto', desc: 'Environnement isolé et sécurisé' },
-    ],
-    'smart-tv': [
-      { id: 'dpad-nav', label: 'Navigation 100% Télécommande (D-Pad)', desc: 'Ergonomie salon naturelle' },
-      { id: 'iptv-stream', label: 'Moteur Vidéo IPTV / HLS / MPEG-TS', desc: 'Décodage matériel ultra-fluide' },
-      { id: 'ipk-packaging', label: 'Scripts de Packaging Automatique (.ipk / .wgt)', desc: 'Installation directe sur TV' },
-      { id: 'qr-pairing', label: 'Appairage Compte par QR Code', desc: 'Connexion instantanée sans clavier' },
-    ],
-    security: [
-      { id: 'cloudflare-waf', label: 'Pare-feu Cloudflare WAF & Masquage IP', desc: 'Bloque bots et attaques ciblées' },
-      { id: 'email-anti-spoof', label: 'Anti-Usurpation SPF (-all) / DKIM 2048 / DMARC', desc: '100% de délivrabilité sans spam' },
-      { id: 'argon2-2fa', label: 'Protection Backend Argon2 & 2FA TOTP', desc: 'Sécurité de niveau institutionnel' },
-      { id: 'audit-rapport', label: 'Rapport d\'Audit & Recommandations DevOps', desc: 'Plan d\'action étape par étape' },
-    ]
-  };
 
   const toggleFeature = (id: string) => {
     if (selectedFeatures.includes(id)) {
@@ -74,10 +52,14 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onConfigurePro
       .map(f => f.label)
       .join(', ');
 
-    const summary = `Bonjour Hicham, je souhaite échanger au sujet de mon projet :
-- Plateforme cible : ${platformObj?.name}
-- Fonctionnalités & Spécifications clés : ${activeFeats || 'Standard'}
-Merci de m'indiquer vos disponibilités pour échanger sur la faisabilité et le devis.`;
+    let summary = '';
+    if (language === 'ar') {
+      summary = `مرحباً هشام، أود مناقشة مشروعي معك:\n- المنصة المستهدفة: ${platformObj?.name}\n- المواصفات والمتطلبات التقنية: ${activeFeats || 'قياسية'}\nأرجو إخباري بتفرغك لمناقشة الجدوى وتقدير التكلفة.`;
+    } else if (language === 'fr') {
+      summary = `Bonjour Hicham, je souhaite échanger au sujet de mon projet :\n- Plateforme cible : ${platformObj?.name}\n- Spécifications clés : ${activeFeats || 'Standard'}\nMerci de m'indiquer vos disponibilités pour échanger sur la faisabilité et le devis.`;
+    } else {
+      summary = `Hello Hicham, I would like to discuss my project with you:\n- Target platform: ${platformObj?.name}\n- Technical specifications: ${activeFeats || 'Standard'}\nPlease let me know your availability to discuss technical feasibility and quote.`;
+    }
 
     onConfigureProject(summary);
   };
@@ -100,19 +82,19 @@ Merci de m'indiquer vos disponibilités pour échanger sur la faisabilité et le
         <div className="flex flex-col items-center text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-mono text-cyan-400 mb-3">
             <Briefcase className="w-3.5 h-3.5" />
-            <span>Offres & Services Prêts à Déployer</span>
+            <span>{t.services.pill}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">
-            Des Solutions Logicielles Concrètes
+            {t.services.title}
           </h2>
           <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl font-light">
-            Une expertise éprouvée pour donner vie à vos projets mobiles, web, streaming et sécuriser vos infrastructures.
+            {t.services.subtitle}
           </p>
         </div>
 
         {/* 4 Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-          {SERVICES.map((srv, idx) => (
+          {services.map((srv, idx) => (
             <div
               key={srv.id}
               className="glass-panel rounded-2xl p-7 border border-slate-800 hover:border-cyan-500/30 transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 group"
@@ -123,7 +105,7 @@ Merci de m'indiquer vos disponibilités pour échanger sur la faisabilité et le
                     {getServiceIcon(srv.icon)}
                   </div>
                   <span className="text-xs font-mono text-cyan-400 font-semibold px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
-                    Service 0{idx + 1}
+                    {t.services.servicePrefix}{idx + 1}
                   </span>
                 </div>
 
@@ -137,7 +119,7 @@ Merci de m'indiquer vos disponibilités pour échanger sur la faisabilité et le
                 {/* Deliverables list */}
                 <div className="space-y-2.5 mb-6">
                   <span className="text-xs font-mono text-slate-400 uppercase tracking-wider block">
-                    Livrables Clés Inclus :
+                    {t.services.deliverablesLabel}
                   </span>
                   {srv.deliverables.map((item, dIdx) => (
                     <div key={dIdx} className="flex items-start gap-2.5 text-xs text-slate-300">
@@ -148,13 +130,13 @@ Merci de m'indiquer vos disponibilités pour échanger sur la faisabilité et le
                 </div>
 
                 {/* Tech chips */}
-                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-slate-800/70">
-                  {srv.technologies.map((t, tIdx) => (
+                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-slate-800/70" dir="ltr">
+                  {srv.technologies.map((tech, tIdx) => (
                     <span 
                       key={tIdx}
                       className="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800/80 text-cyan-300 border border-slate-700/80"
                     >
-                      {t}
+                      {tech}
                     </span>
                   ))}
                 </div>
@@ -170,24 +152,24 @@ Merci de m'indiquer vos disponibilités pour échanger sur la faisabilité et le
                   }}
                   className="text-xs font-semibold text-cyan-400 hover:text-cyan-300 inline-flex items-center gap-1.5 transition-colors"
                 >
-                  <span>Configurer ce service</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <span>{t.services.configureBtn}</span>
+                  <ArrowRight className={`w-3.5 h-3.5 ${isRtl ? 'rotate-180' : ''}`} />
                 </button>
 
                 <a
-                  href={PROFILE_DATA.fiverrUrl}
+                  href={PROFILE_CONSTANTS.fiverrUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-xs font-mono text-emerald-400 hover:underline"
                 >
-                  Commander via Fiverr
+                  {t.services.orderFiverrBtn}
                 </a>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Interactive Solution Builder / Estimator Widget */}
+        {/* Interactive Scope Builder / Estimator Widget */}
         <div id="configurateur" className="glass-panel-glow rounded-3xl p-6 sm:p-10 border border-cyan-500/30">
           <div className="flex flex-col md:flex-row md:items-center justify-between pb-8 mb-8 border-b border-slate-800 gap-4">
             <div className="flex items-center gap-3">
@@ -196,16 +178,16 @@ Merci de m'indiquer vos disponibilités pour échanger sur la faisabilité et le
               </div>
               <div>
                 <h3 className="text-xl sm:text-2xl font-display font-bold text-white">
-                  Simulateur de Périmètre & Stack Recommandée
+                  {t.services.builder.title}
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-400">
-                  Sélectionnez votre type de projet et vos spécifications pour générer un résumé technique direct.
+                  {t.services.builder.subtitle}
                 </p>
               </div>
             </div>
 
             <span className="self-start md:self-auto px-3 py-1 rounded-full text-xs font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              Devis & Étude sous 24h
+              {t.services.builder.badge}
             </span>
           </div>
 
@@ -214,7 +196,7 @@ Merci de m'indiquer vos disponibilités pour échanger sur la faisabilité et le
             {/* Left: Platform Selection */}
             <div className="lg:col-span-5 space-y-3">
               <label className="text-xs font-mono text-cyan-400 uppercase tracking-wider block">
-                1. Choisissez la plateforme principale :
+                {t.services.builder.step1}
               </label>
               
               <div className="space-y-2.5">
@@ -225,7 +207,7 @@ Merci de m'indiquer vos disponibilités pour échanger sur la faisabilité et le
                       setSelectedPlatform(opt.id);
                       setSelectedFeatures([]);
                     }}
-                    className={`w-full text-left p-3.5 rounded-xl border text-xs sm:text-sm transition-all flex items-center justify-between ${
+                    className={`w-full text-start p-3.5 rounded-xl border text-xs sm:text-sm transition-all flex items-center justify-between ${
                       selectedPlatform === opt.id
                         ? 'bg-cyan-500/15 border-cyan-500/50 text-white font-semibold shadow-md shadow-cyan-500/10'
                         : 'bg-slate-900/60 border-slate-800 text-slate-300 hover:border-slate-700'
@@ -233,7 +215,7 @@ Merci de m'indiquer vos disponibilités pour échanger sur la faisabilité et le
                   >
                     <span>{opt.name}</span>
                     {selectedPlatform === opt.id && (
-                      <Check className="w-4 h-4 text-cyan-400 shrink-0 ml-2" />
+                      <Check className="w-4 h-4 text-cyan-400 shrink-0 mx-2" />
                     )}
                   </button>
                 ))}
@@ -243,7 +225,7 @@ Merci de m'indiquer vos disponibilités pour échanger sur la faisabilité et le
             {/* Middle: Feature Checkboxes */}
             <div className="lg:col-span-7 space-y-3">
               <label className="text-xs font-mono text-cyan-400 uppercase tracking-wider block">
-                2. Spécifications & Exigences Techniques Souhaitées :
+                {t.services.builder.step2}
               </label>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -280,7 +262,7 @@ Merci de m'indiquer vos disponibilités pour échanger sur la faisabilité et le
                 <div className="text-xs text-slate-400">
                   <span className="text-cyan-400 font-mono font-semibold">
                     {selectedFeatures.length}
-                  </span> option(s) sélectionnée(s) • Stack prête pour production
+                  </span> {t.services.builder.selectedCount} • {t.services.builder.readyNote}
                 </div>
 
                 <button
@@ -288,7 +270,7 @@ Merci de m'indiquer vos disponibilités pour échanger sur la faisabilité et le
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-xs font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-lg shadow-cyan-500/25 transition-all hover:scale-[1.02]"
                 >
                   <FileCheck className="w-4 h-4" />
-                  <span>Demander une étude avec ce périmètre</span>
+                  <span>{t.services.builder.submitBtn}</span>
                 </button>
               </div>
 
