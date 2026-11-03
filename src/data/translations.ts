@@ -148,8 +148,9 @@ export interface TranslationData {
       username: string;
       desc: string;
     };
-    emailCard: {
+    privacyCard: {
       title: string;
+      desc: string;
     };
     languagesCard: {
       title: string;
@@ -167,8 +168,10 @@ export interface TranslationData {
       messageLabel: string;
       messagePlaceholder: string;
       submitBtn: string;
+      sendingBtn: string;
       successTitle: string;
       successDesc: string;
+      errorMsg: string;
       sendAnother: string;
       ndaNotice: string;
     };
@@ -364,8 +367,9 @@ export const TRANSLATIONS: Record<Language, TranslationData> = {
         username: '@hicham1943',
         desc: 'Escrow-protected payments, verified client reviews, and guaranteed milestones.',
       },
-      emailCard: {
-        title: 'Direct Business Email',
+      privacyCard: {
+        title: 'Confidential Inquiry & Direct Routing',
+        desc: 'Your specifications and contact details are transmitted directly to Hicham AM. under strict mutual non-disclosure (NDA). Zero public exposure.',
       },
       languagesCard: {
         title: 'Working Languages',
@@ -393,8 +397,10 @@ export const TRANSLATIONS: Record<Language, TranslationData> = {
         messageLabel: 'Project Details & Specifications *',
         messagePlaceholder: 'Describe your idea, desired features, timeline constraints, and target platforms...',
         submitBtn: 'Send Project Inquiry',
-        successTitle: 'Inquiry Prepared Successfully',
-        successDesc: 'Your email client has been prepared to forward these details to contact@hicham.dev. You can also reach out directly via Fiverr.',
+        sendingBtn: 'Transmitting inquiry...',
+        successTitle: 'Inquiry Transmitted Successfully!',
+        successDesc: 'Thank you for reaching out. Your project specifications have been delivered directly to Hicham AM. You will receive a technical response within 24 hours.',
+        errorMsg: 'Submission encountered an issue. You can also reach out directly via WhatsApp.',
         sendAnother: 'Send another inquiry',
         ndaNotice: 'Confidentiality Guaranteed • Non-Disclosure Agreement (NDA) available upon request',
       }
@@ -589,8 +595,9 @@ export const TRANSLATIONS: Record<Language, TranslationData> = {
         username: '@hicham1943',
         desc: 'Paiement sécurisé avec garantie de livraison, jalons protégés et avis vérifiés.',
       },
-      emailCard: {
-        title: 'Adresse E-mail Directe',
+      privacyCard: {
+        title: 'Messagerie Directe & Confidentialité (NDA)',
+        desc: 'Vos spécifications et coordonnées sont transmises directement à Hicham AM. en toute confidentialité. Zéro exposition publique de vos données.',
       },
       languagesCard: {
         title: 'Langues de Travail & Échanges',
@@ -618,8 +625,10 @@ export const TRANSLATIONS: Record<Language, TranslationData> = {
         messageLabel: 'Détails de Votre Projet ou Spécifications *',
         messagePlaceholder: 'Décrivez votre idée, les fonctionnalités souhaitées, les délais envisagés et les contraintes techniques...',
         submitBtn: 'Transmettre la demande de projet',
-        successTitle: 'Demande Préparée avec Succès',
-        successDesc: 'Votre client de messagerie s\'est ouvert pour transmettre ces éléments à contact@hicham.dev. Vous pouvez également me joindre directement sur Fiverr.',
+        sendingBtn: 'Transmission en cours...',
+        successTitle: 'Demande Transmise avec Succès !',
+        successDesc: 'Merci pour votre message ! Vos informations ont été transmises directement à Hicham AM. Vous recevrez une réponse technique détaillée par e-mail sous 24h.',
+        errorMsg: "Un problème est survenu lors de l'envoi. Vous pouvez également me joindre directement sur WhatsApp.",
         sendAnother: 'Envoyer un autre message',
         ndaNotice: 'Confidentialité assurée • Accord de non-divulgation (NDA) disponible sur demande',
       }
@@ -814,8 +823,9 @@ export const TRANSLATIONS: Record<Language, TranslationData> = {
         username: 'hicham1943@',
         desc: 'دفع آمن مع ضمان كامل للتسليم، مراحل دفع محمية، وتقييمات عملاء موثوقة.',
       },
-      emailCard: {
-        title: 'البريد الإلكتروني المباشر',
+      privacyCard: {
+        title: 'تواصل مباشر وسرية تامة (NDA)',
+        desc: 'تُنقل مواصفات مشروعك ومعلوماتك مباشرة إلى هشام AM. بسرية مطلقة ودون أي ظهور علني لبياناتك.',
       },
       languagesCard: {
         title: 'لغات العمل والتواصل',
@@ -843,8 +853,10 @@ export const TRANSLATIONS: Record<Language, TranslationData> = {
         messageLabel: 'تفاصيل ومواصفات المشروع *',
         messagePlaceholder: 'يرجى كتابة فكرة المشروع، الميزات المطلوبة، الإطار الزمني المتوقع، والمنصات المستهدفة...',
         submitBtn: 'إرسال تفاصيل المشروع',
-        successTitle: 'تم تجهيز طلبك بنجاح',
-        successDesc: 'تم فتح برنامج البريد الإلكتروني الخاص بك لإرسال هذه التفاصيل إلى contact@hicham.dev. يمكنك أيضاً التواصل معي مباشرة عبر فايفر.',
+        sendingBtn: 'جارٍ إرسال الطلب...',
+        successTitle: 'تم إرسال طلبك بنجاح!',
+        successDesc: 'شكراً لتواصلك! تم إرسال تفاصيل مشروعك مباشرة إلى هشام AM. ستصلك استجابة تقنية مفصلة عبر بريدك الإلكتروني خلال 24 ساعة.',
+        errorMsg: 'حدثت مشكلة أثناء الإرسال. يمكنك أيضاً التواصل معي مباشرة عبر الواتساب.',
         sendAnother: 'إرسال طلب آخر',
         ndaNotice: 'خصوصية وسرية تامة مضمونة • اتفاقية عدم إفصاح (NDA) متاحة عند الطلب',
       }

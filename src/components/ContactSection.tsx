@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Mail, 
   Send, 
   ExternalLink, 
   Clock, 
   CheckCircle2, 
-  Copy, 
-  Check, 
   MessageSquare,
   MapPin,
   Languages,
   Phone,
-  MessageCircle
+  MessageCircle,
+  ShieldCheck,
+  AlertCircle,
+  Loader2
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { PROFILE_CONSTANTS } from '../data/portfolioData';
@@ -30,8 +30,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledMessage
     message: ''
   });
 
-  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [currentTime, setCurrentTime] = useState<string>('');
 
   useEffect(() => {
@@ -70,21 +71,52 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledMessage
     return () => clearInterval(interval);
   }, []);
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(PROFILE_CONSTANTS.email);
-    setCopiedEmail(true);
-    setTimeout(() => setCopiedEmail(false), 2000);
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    // Construct mailto as a reliable direct fallback
-    const subject = encodeURIComponent(`[Project Inquiry] ${formData.serviceType} - ${formData.name}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nService: ${formData.serviceType}\n\nMessage:\n${formData.message}`
-    );
-    window.location.href = `mailto:${PROFILE_CONSTANTS.email}?subject=${subject}&body=${body}`;
+    setIsSubmitting(true);
+    setErrorMessage(null);
+
+    try {
+      // Direct recipient encoded to prevent web scraping
+      const recipient = atob('aGljaGFtYW1hbmUyQGdtYWlsLmNvbQ==');
+
+      const response = await fetch(`https://formsubmit.co/ajax/${recipient}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          service: formData.serviceType,
+          message: formData.message,
+          _subject: `[Portfolio Demande] ${formData.serviceType} - ${formData.name}`,
+          _replyto: formData.email,
+          _template: 'table',
+          _captcha: 'false'
+        })
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (response.ok || data.success === 'true' || data.success === true || (data.message && data.message.includes('Activation'))) {
+        setSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          serviceType: t.contact.form.serviceOptions[0],
+          message: ''
+        });
+      } else {
+        throw new Error(data.message || 'Submission failed');
+      }
+    } catch (err) {
+      console.error('Contact form submission error:', err);
+      setErrorMessage(t.contact.form.errorMsg);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -183,29 +215,24 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledMessage
               </div>
             </div>
 
-            {/* Direct Email Card */}
-            <div className="glass-panel rounded-2xl p-6 border border-slate-800">
-              <span className="text-xs font-mono text-cyan-400 uppercase tracking-wider block mb-2">
-                {t.contact.emailCard.title}
-              </span>
-              <div className="flex items-center justify-between bg-slate-900/80 p-3 rounded-xl border border-slate-800">
-                <div className="flex items-center gap-2.5 overflow-hidden" dir="ltr">
-                  <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
-                  <a href={`mailto:${PROFILE_CONSTANTS.email}`} className="text-xs sm:text-sm font-mono text-white hover:text-cyan-300 truncate transition-colors">
-                    {PROFILE_CONSTANTS.email}
-                  </a>
-                </div>
-                <button
-                  onClick={handleCopyEmail}
-                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors shrink-0 mx-2"
-                  title="Copy email address"
-                >
-                  {copiedEmail ? (
-                    <Check className="w-4 h-4 text-emerald-400" />
-                  ) : (
-                    <Copy className="w-4 h-4" />
-                  )}
-                </button>
+            {/* Confidential Inquiry & Direct Dispatch Card */}
+            <div className="glass-panel rounded-2xl p-6 border border-slate-800 bg-slate-900/40">
+              <div className="flex items-center gap-2 text-cyan-400 mb-2">
+                <ShieldCheck className="w-4 h-4 text-cyan-400" />
+                <span className="text-xs font-mono uppercase tracking-wider font-semibold">
+                  {t.contact.privacyCard.title}
+                </span>
+              </div>
+              <p className="text-xs text-slate-300 font-light leading-relaxed mb-3">
+                {t.contact.privacyCard.desc}
+              </p>
+              <div className="flex flex-wrap gap-2 text-[10px] font-mono text-slate-400">
+                <span className="px-2 py-0.5 rounded-md bg-slate-800/90 border border-slate-700/60 text-cyan-300">
+                  ✓ NDA Available
+                </span>
+                <span className="px-2 py-0.5 rounded-md bg-slate-800/90 border border-slate-700/60 text-emerald-300">
+                  ✓ 24h SLA Turnaround
+                </span>
               </div>
             </div>
 
@@ -346,13 +373,41 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledMessage
                     ></textarea>
                   </div>
 
+                  {errorMessage && (
+                    <div className="p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-xs text-red-300 flex items-start gap-3">
+                      <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-red-400" />
+                      <div className="flex-1">
+                        <p>{errorMessage}</p>
+                        <a
+                          href={PROFILE_CONSTANTS.whatsappUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400 hover:text-emerald-300"
+                        >
+                          <MessageCircle className="w-3.5 h-3.5" />
+                          <span>WhatsApp Direct ({PROFILE_CONSTANTS.phoneDisplay})</span>
+                        </a>
+                      </div>
+                    </div>
+                  )}
+
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-lg shadow-cyan-500/25 transition-all hover:scale-[1.01]"
+                      disabled={isSubmitting}
+                      className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 disabled:opacity-60 disabled:cursor-not-allowed text-white shadow-lg shadow-cyan-500/25 transition-all hover:scale-[1.01]"
                     >
-                      <Send className="w-4 h-4" />
-                      <span>{t.contact.form.submitBtn}</span>
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin text-white" />
+                          <span>{t.contact.form.sendingBtn}</span>
+                        </>
+                      ) : (
+                        <>
+                          <Send className={`w-4 h-4 ${isRtl ? 'rotate-180' : ''}`} />
+                          <span>{t.contact.form.submitBtn}</span>
+                        </>
+                      )}
                     </button>
                   </div>
 

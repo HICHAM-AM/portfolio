@@ -51,10 +51,10 @@ export const Footer: React.FC = () => {
                 <MapPin className="w-3.5 h-3.5 text-cyan-400" />
                 <span>{profile.location}</span>
               </div>
-              <div className="flex items-center gap-2 text-slate-400 text-xs font-mono" dir="ltr">
+              <div className="flex items-center gap-2 text-slate-400 text-xs">
                 <Mail className="w-3.5 h-3.5 text-cyan-400" />
-                <a href={`mailto:${PROFILE_CONSTANTS.email}`} className="hover:text-cyan-300 transition-colors">
-                  {PROFILE_CONSTANTS.email}
+                <a href="#contact" className="hover:text-cyan-300 transition-colors">
+                  {language === 'ar' ? 'إرسال رسالة مباشرة (النموذج)' : language === 'fr' ? 'Formulaire de contact direct' : 'Direct Project Inquiry Form'}
                 </a>
               </div>
               <div className="flex items-center gap-2 text-slate-400 text-xs font-mono" dir="ltr">

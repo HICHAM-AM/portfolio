@@ -52,7 +52,6 @@ export const PROFILE_CONSTANTS = {
   name: "Hicham AM.",
   username: "@hicham1943",
   fiverrUrl: "https://www.fiverr.com/hicham1943",
-  email: "hichamamane2@gmail.com",
   phone: "+212697659597",
   phoneDisplay: "+212 697-659597",
   whatsappUrl: "https://wa.me/212697659597",

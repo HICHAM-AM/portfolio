@@ -26,7 +26,7 @@ High-performance, production-grade portfolio website engineered for **Hicham AM.
   - **Interactive Scope Builder :** Custom platform and capability selector generating instant pre-filled inquiries.
   - **Cloudflare Security Simulator :** Real-time animated integrity scan verifying 12 security checkpoints (WAF, SSL Strict, SPF `-all`, DKIM 2048, DMARC `p=reject`, Argon2, 2FA).
   - **Live Local Time :** Real-time clock for Casablanca, Morocco (GMT+1).
-  - **Direct CTAs :** One-click WhatsApp contact, Fiverr orders ([fiverr.com/hicham1943](https://www.fiverr.com/hicham1943)), and direct email (`hichamamane2@gmail.com`).
+  - **Direct CTAs :** One-click WhatsApp contact, Fiverr orders ([fiverr.com/hicham1943](https://www.fiverr.com/hicham1943)), and secured project inquiry form.
 
 ---
 
