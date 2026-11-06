@@ -9,6 +9,7 @@ import {
 import { useLanguage } from '../context/LanguageContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { PROFILE_CONSTANTS } from '../data/portfolioData';
+import profilePhoto from '../assets/profile.jpg';
 
 interface NavbarProps {
   activeSection: string;
@@ -51,10 +52,12 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
           {/* Logo & Status Badge */}
           <a href="#accueil" className="flex items-center gap-3 group">
             <div className="relative">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 p-[1.5px] shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-500/40 transition-shadow">
-                <div className="w-full h-full bg-[#0b0e17] rounded-[10px] flex items-center justify-center font-display font-bold text-white tracking-wider text-xs">
-                  HAM
-                </div>
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 p-[1.5px] shadow-lg shadow-cyan-500/25 group-hover:shadow-cyan-500/50 transition-all duration-300">
+                <img 
+                  src={profilePhoto} 
+                  alt={PROFILE_CONSTANTS.name} 
+                  className="w-full h-full object-cover object-top rounded-full"
+                />
               </div>
               <span className={`absolute -bottom-0.5 ${isRtl ? '-left-0.5' : '-right-0.5'} flex h-3 w-3`}>
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>

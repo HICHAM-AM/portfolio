@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { getPortfolioData, PROFILE_CONSTANTS } from '../data/portfolioData';
+import profilePhoto from '../assets/profile.jpg';
 
 export const Footer: React.FC = () => {
   const { language, t } = useLanguage();
@@ -27,10 +28,12 @@ export const Footer: React.FC = () => {
           {/* Col 1 & 2: Brand & Philosophy */}
           <div className="lg:col-span-2 space-y-4">
             <a href="#accueil" className="flex items-center gap-3 group inline-block">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 p-[1.5px] shadow-lg shadow-cyan-500/20">
-                <div className="w-full h-full bg-[#0b0e17] rounded-[10px] flex items-center justify-center font-display font-bold text-white text-xs">
-                  HAM
-                </div>
+              <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 p-[1.5px] shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-500/40 transition-shadow">
+                <img 
+                  src={profilePhoto} 
+                  alt={PROFILE_CONSTANTS.name} 
+                  className="w-full h-full object-cover object-top rounded-full"
+                />
               </div>
               <div className="flex flex-col">
                 <span className="font-display font-bold text-base text-white tracking-tight group-hover:text-cyan-400 transition-colors">
